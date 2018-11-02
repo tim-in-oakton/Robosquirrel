@@ -47,14 +47,14 @@ def scanMotion(width, height):
     return motionFound
 
 def motionDetection():
-    print "Scanning for Motion"
+    print ("Scanning for Motion")
     while (disco_isnt_cool):
         if scanMotion(224, 160):
-            print "Motion detected"
+            print ("Motion detected")
             #Take hires picture, push to cloud classifier API
             Motionpic = takeMotionImage(2592, 1944)
             if(SpotObject(Motionpic, "Squirrel",Squirrelscore)):
-                print "I SEE SQUIRREL"
+                print ("I SEE SQUIRREL")
 
         # if (squirrel)
         #figure out how to annoy squirrel
@@ -65,4 +65,4 @@ if __name__ == '__main__':
       try:
           motionDetection()
       finally:
-          print "Exiting Program"
+          print ("Exiting Program")
