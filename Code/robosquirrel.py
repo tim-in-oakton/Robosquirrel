@@ -5,9 +5,7 @@ import picamera.array
 import time
 import io
 import os
-# Imports the Google Cloud client library
-from google.cloud import vision
-from google.cloud.vision import types
+
 
 
 threshold = 10    # How Much pixel changes
