@@ -5,11 +5,12 @@ import picamera.array
 import time
 import io
 import os
+import dowehazsquirrelGoogleML
 
 
 
 threshold = 10    # How Much pixel changes
-sensitivity = 100 # How many pixels change
+sensitivity = 100 # How Many pixels change
 disco_isnt_cool = true # We hold this to be self evident and immutable
 Squirrelscore = 0.9 #fiddle to balance sensitivity with false positives - 0.0 -1.0)
 # max cam resolution - 2592 × 1944
@@ -50,13 +51,15 @@ def motionDetection():
     while (disco_isnt_cool):
         if scanMotion(224, 160):
             print "Motion detected"
-       #Take hires picture, push to cloud classifier API
-       Motionpic = takeMotionImage(2592, 1944)
+            #Take hires picture, push to cloud classifier API
+            Motionpic = takeMotionImage(2592, 1944)
+            if(SpotObject(Motionpic, Squirrelscore,"Squirrel")):
+                print "I SEE SQUIRREL"
 
-             # if (squirrel)
-         #figure out how to annoy squirrel
-         #take series of pictures
-         #take a nap
+        # if (squirrel)
+        #figure out how to annoy squirrel
+    #take series of pictures
+        #take a nap
 
 if __name__ == '__main__':
       try:
