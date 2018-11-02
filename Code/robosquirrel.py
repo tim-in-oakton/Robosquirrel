@@ -30,7 +30,7 @@ def scanMotion(width, height):
     data1 = takeMotionImage(width, height)
     while not motionFound:
         data2 = takeMotionImage(width, height)
-        diffCount = 0L;
+        diffCount = 0;
         for w in range(0, width):
             for h in range(0, height):
                 # get the diff of the pixel. Conversion to int
@@ -47,7 +47,7 @@ def scanMotion(width, height):
     return motionFound
 
 def motionDetection():
-    print "Scanning for Motion threshold=%i sensitivity=%i...  % (threshold, sensitivity)
+    print "Scanning for Motion"
     while (disco_isnt_cool):
         if scanMotion(224, 160):
             print "Motion detected"
