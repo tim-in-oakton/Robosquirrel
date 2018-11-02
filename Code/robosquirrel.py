@@ -53,7 +53,7 @@ def motionDetection():
             print "Motion detected"
             #Take hires picture, push to cloud classifier API
             Motionpic = takeMotionImage(2592, 1944)
-            if(SpotObject(Motionpic, Squirrelscore,"Squirrel")):
+            if(SpotObject(Motionpic, "Squirrel",Squirrelscore)):
                 print "I SEE SQUIRREL"
 
         # if (squirrel)
