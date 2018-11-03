@@ -9,23 +9,33 @@ import sys # for sizeof
 from dowehazsquirrelGoogleML import SpotObject #we'll use different models - cloud, hybrid, edge
 # about to change to file-like-object
 
-threshold = 10    # How Much pixel changes
+threshold = 30    # How Much pixel changes
 sensitivity = 300 # How Many pixels change
 disco_isnt_cool = True # We hold this to be self evident and immutable
 Squirrelscore = 0.9 #fiddle to balance sensitivity with false positives - 0.0 -1.0)
 # max cam resolution - 2592 × 1944
 
 def takeMotionImage(width, height):
-        #time.sleep(1)
-        # Create an in-memory stream
-        streamPic = io.BytesIO()
-        camera = picamera.PiCamera()
-        camera.start_preview()
-        # Camera warm-up time
-        time.sleep(2)
-        camera.capture(streamPic, 'jpeg')
-        camera.close()
-        return streamPic
+        with picamera.PiCamera() as camera:
+            streamPic = io.BytesIO()
+            time.sleep(1)
+            camera.resolution = (width, height)
+            with picamera.array.PiRGBArray(camera) as stream:
+                camera.exposure_mode = 'auto'
+                camera.awb_mode = 'auto'
+                camera.capture(streamPic, 'jpeg')
+                return streamPic
+
+        # #time.sleep(1)
+        # # Create an in-memory stream
+        # streamPic = io.BytesIO()
+        # camera = picamera.PiCamera()
+        # camera.start_preview()
+        # # Camera warm-up time
+        # time.sleep(2)
+        # camera.capture(streamPic, 'jpeg')
+        # camera.close()
+        # return streamPic
 
 def takeMotionImageArray(width, height):
     with picamera.PiCamera() as camera:
@@ -65,8 +75,8 @@ def motionDetection():
             print ("Motion detected")
             #Take hires picture, push to cloud classifier API
             Motionpic = takeMotionImage(1024, 768)
-            print ("tookMotionImage - sending to Google")
-            print('Motionpic type is',type(Motionpic),'    ',sys.getsizeof(Motionpic))
+            #print ("tookMotionImage - sending to Google")
+            #print('Motionpic type is',type(Motionpic),'    ',sys.getsizeof(Motionpic))
 
             if(SpotObject(Motionpic, "Squirrel",Squirrelscore)):
                 print ("I SEE SQUIRREL")
@@ -79,7 +89,7 @@ def motionDetection():
                     f.write(Motionpic)
                     f.close()
                     Motionpic = takeMotionImage(1024, 768)
-            print ("no squirrel")
+            #print ("no squirrel")
             time.sleep(5)
 
 
