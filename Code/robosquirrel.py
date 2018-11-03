@@ -6,7 +6,7 @@ import time
 import io
 import os
 from dowehazsquirrelGoogleML import SpotObject #we'll use different models - cloud, hybrid, edge
-
+# about to change to file-like-object
 
 threshold = 10    # How Much pixel changes
 sensitivity = 100 # How Many pixels change
