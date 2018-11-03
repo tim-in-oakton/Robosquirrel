@@ -9,7 +9,7 @@ import sys # for sizeof
 from dowehazsquirrelGoogleML import SpotObject #we'll use different models - cloud, hybrid, edge
 # about to change to file-like-object
 
-threshold = 50    # How Much pixel changes
+threshold = 55    # How Much pixel changes
 sensitivity = 300 # How Many pixels change
 disco_isnt_cool = True # We hold this to be self evident and immutable
 Squirreltag = "squirrel"
