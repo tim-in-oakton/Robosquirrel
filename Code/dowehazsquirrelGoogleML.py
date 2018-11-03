@@ -21,7 +21,7 @@ client = vision.ImageAnnotatorClient()
 # image = types.Image(content=content)
 def SpotObject (image, tag, confidence):
     # Performs label detection on the image file
-    response = client.label_detection(image=image, 5)
+    response = client.label_detection(image=image)
     labels = response.label_annotations
 
     print('Labels:')
