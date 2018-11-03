@@ -78,7 +78,7 @@ def motionDetection():
             #print ("tookMotionImage - sending to Google")
             #print('Motionpic type is',type(Motionpic),'    ',sys.getsizeof(Motionpic))
 
-            if(SpotObject(Motionpic, "Squirrel",Squirrelscore)):
+            if(SpotObject(Motionpic, "squirrel",Squirrelscore)):
                 print ("I SEE SQUIRREL")
                 #figure out how to annoy squirrel
                 for x in range(1,4): #take 3 pics
