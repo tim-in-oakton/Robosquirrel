@@ -17,7 +17,7 @@ Squirrelscore = 0.9 #fiddle to balance sensitivity with false positives - 0.0 -1
 def takeMotionImage(width, height):
         #time.sleep(1)
         # Create an in-memory stream
-        streamPic = io.BytesIO()
+        #streamPic = io.BytesIO()   - deleted to see if regular works
         camera = picamera.PiCamera()
         camera.start_preview()
         # Camera warm-up time
