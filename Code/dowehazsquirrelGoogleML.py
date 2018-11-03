@@ -17,8 +17,12 @@ def SpotObject(ImageBytesIO, tag, confidence):
 
     # copies the image into memory
     content = ImageBytesIO.read()
+    print('content type=',type(content))
     image = vision.types.Image(content=content)
+    print('image type=',type(image))
+
     response = client.label_detection(image=image)
+    
     labels = response.label_annotations
 
     print('Labels:')
