@@ -12,7 +12,8 @@ from dowehazsquirrelGoogleML import SpotObject #we'll use different models - clo
 threshold = 30    # How Much pixel changes
 sensitivity = 300 # How Many pixels change
 disco_isnt_cool = True # We hold this to be self evident and immutable
-Squirrelscore = 0.9 #fiddle to balance sensitivity with false positives - 0.0 -1.0)
+Squirreltag = "squirrel"
+Squirrelscore = 0.5 #fiddle to balance sensitivity with false positives - 0.0 -1.0)
 # max cam resolution - 2592 × 1944
 
 def takeMotionImage(width, height):
@@ -78,15 +79,15 @@ def motionDetection():
             #print ("tookMotionImage - sending to Google")
             #print('Motionpic type is',type(Motionpic),'    ',sys.getsizeof(Motionpic))
 
-            if(SpotObject(Motionpic, "squirrel",Squirrelscore)):
-                print ("I SEE SQUIRREL")
+            if(SpotObject(Motionpic, Squirreltag ,Squirrelscore)):
+                print ("I SEE A SQUIRREL")
                 #figure out how to annoy squirrel
                 for x in range(1,4): #take 3 pics
                     #camera.capture('Squirrel{timestamp:%Y-%m-%d-%H-%M}.jpg')
                     #filename = 'Squirrelpic-%s.jpg'%time.datetime.now().strftime('%Y-%m-%d')
                     filename = 'Squirrelpic-%s.jpg'%time.strftime("%Y%m%d-%H%M%S")
                     print('filename is',filename)
-                    f = open(filename,'w')
+                    f = open(filename,'wb')
                     Motionpic.seek(0)
                     f.write(Motionpic.read())
                     f.close()
