@@ -18,7 +18,7 @@ def takeMotionImage(width, height):
         #time.sleep(1)
         # Create an in-memory stream
         streamPic = io.BytesIO()
-        camera = PiCamera()
+        camera = picamera.PiCamera()
         camera.start_preview()
         # Camera warm-up time
         sleep(2)
