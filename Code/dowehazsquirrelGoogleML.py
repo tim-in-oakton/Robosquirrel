@@ -28,7 +28,7 @@ def SpotObject(ImageBytesIO, tag, confidence):
     labels = response.label_annotations
 
     for label in labels:
-        if((label.description == tag) and (label.score > confidence):
+        if((label.description == tag) and (label.score > confidence)):
             print(label.description, label.score)
         return(true)
     return(False)
