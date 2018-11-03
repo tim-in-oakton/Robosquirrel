@@ -23,7 +23,7 @@ def SpotObject(ImageBytesIO, tag, confidence):
     image = vision.types.Image(content=content)
     #print('image type=',type(image),'    ',sys.getsizeof(image))
 
-    response = client.label_detection(image=image)
+    response = client.label_detection(image=image, maxResults=20)
     labels = response.label_annotations
 
     for label in labels:
