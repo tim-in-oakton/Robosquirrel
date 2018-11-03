@@ -9,15 +9,14 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/home/pi/squirrelcred.json"
 
 
 
-def SpotObject(content, tag, confidence):
+def SpotObject(ImageBytesIO, tag, confidence):
     # Performs label detection on the content file (io.ByteIO), tag to search for, confidence required for match
 
     # Instantiates a client
     client = vision.ImageAnnotatorClient()
 
     # copies the image into memory
-    #content = image.read()
-
+    content = ImageBytesIO.read()
     image = vision.types.Image(content=content)
     response = client.label_detection(image=image)
     labels = response.label_annotations
