@@ -13,17 +13,24 @@ def SpotObject(ImageBytesIO, tag, confidence):
     # Performs label detection on the content file (io.ByteIO), tag to search for, confidence required for match
     # Instantiates a client
     client = vision.ImageAnnotatorClient()
-    # copies the image into memory
-    #print('ImageBytesIO type=',type(ImageBytesIO),'    ',sys.getsizeof(ImageBytesIO))
 
+    #read the passed ByteIO image into content
     ImageBytesIO.seek(0)
     content = ImageBytesIO.read()
-    #print('content type=',type(content),'    ',sys.getsizeof(content))
-
+    # load the image into a vision.types image
     image = vision.types.Image(content=content)
-    #print('image type=',type(image),'    ',sys.getsizeof(image))
 
-    response = client.label_detection(image=image, maxResults=20)
+    #----------------------- - try different appraoch
+    label_detection_feature = {
+        'type': vision.enums.Feature.Type.LABEL_DETECTION, 'max_results': 20}
+    request_features = [label_detection_feature]
+
+    response = client.annotate_image(
+        {'image': image, 'features': request_features})
+    #------------------------
+    # old working approach, no features
+    #response = client.label_detection(image=image)
+
     labels = response.label_annotations
 
     for label in labels:
