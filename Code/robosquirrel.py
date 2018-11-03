@@ -10,7 +10,7 @@ from dowehazsquirrelGoogleML import SpotObject #we'll use different models - clo
 # about to change to file-like-object
 
 threshold = 10    # How Much pixel changes
-sensitivity = 100 # How Many pixels change
+sensitivity = 300 # How Many pixels change
 disco_isnt_cool = True # We hold this to be self evident and immutable
 Squirrelscore = 0.9 #fiddle to balance sensitivity with false positives - 0.0 -1.0)
 # max cam resolution - 2592 × 1944
@@ -24,6 +24,7 @@ def takeMotionImage(width, height):
         # Camera warm-up time
         time.sleep(2)
         camera.capture(streamPic, 'jpeg')
+        camera.close()
         return streamPic
 
 def takeMotionImageArray(width, height):
