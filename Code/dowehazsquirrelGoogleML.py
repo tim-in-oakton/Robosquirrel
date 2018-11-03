@@ -19,7 +19,7 @@ def SpotObject(ImageBytesIO, tag, confidence):
     # copies the image into memory
     print('ImageBytesIO type=',type(ImageBytesIO),'    ',sys.getsizeof(ImageBytesIO))
 
-    fakefile = open(ImageBytesIO,r)
+    fakefile = open(ImageBytesIO,'r')
 
     content = ImageBytesIO.read()
     print('content type=',type(content),'    ',sys.getsizeof(content))
@@ -35,7 +35,7 @@ def SpotObject(ImageBytesIO, tag, confidence):
 
     response = client.label_detection(image=image)
     labels = response.label_annotations
-
+    fakefile.close()
     print('Labels:')
     for label in labels:
         #if((label.description == tag) and (label.score > confidence):
