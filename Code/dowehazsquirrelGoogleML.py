@@ -33,4 +33,4 @@ def SpotObject(ImageBytesIO, tag, confidence):
             print('FOUND IT!!-----------------------------------------')
             print(label.description, label.score)
             return(True)
-        return(False)
+    return(False)
