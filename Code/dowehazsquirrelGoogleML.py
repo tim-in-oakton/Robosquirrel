@@ -20,23 +20,23 @@ def SpotObject(ImageBytesIO, tag, confidence):
     # load the image into a vision.types image
     image = vision.types.Image(content=content)
 
-    #----------------------- - try different appraoch
+    # Build and make the request on Google w features
     label_detection_feature = {
         'type': vision.enums.Feature.Type.LABEL_DETECTION, 'max_results': 20}
     request_features = [label_detection_feature]
-
     response = client.annotate_image(
         {'image': image, 'features': request_features})
-    #------------------------
-    # old working approach, no features
+
+    # another working approach, no features
     #response = client.label_detection(image=image)
 
+    #load labels with the annotated label responses returned
     labels = response.label_annotations
 
     for label in labels:
-        print(label.description, label.score)
+        #print(label.description, label.score)
         if((label.description == tag)):   #and (label.score > confidence)):
             print('FOUND IT!!-----------------------------------------')
-            #print(label.description, label.score)
+            print(label.description, label.score)
             return(True)
     return(False)
