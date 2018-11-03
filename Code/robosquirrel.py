@@ -2,6 +2,7 @@
 
 import picamera
 import picamera.array
+import BytesIO
 import time
 import io
 import os
@@ -15,6 +16,17 @@ Squirrelscore = 0.9 #fiddle to balance sensitivity with false positives - 0.0 -1
 # max cam resolution - 2592 × 1944
 
 def takeMotionImage(width, height):
+        #time.sleep(1)
+        # Create an in-memory stream
+        my_stream = BytesIO()
+        camera = PiCamera()
+        camera.start_preview()
+        # Camera warm-up time
+        sleep(2)
+        camera.capture(my_stream, 'jpeg')
+        return my_stream
+
+def takeMotionImageArray(width, height):
     with picamera.PiCamera() as camera:
         time.sleep(1)
         camera.resolution = (width, height)
@@ -26,9 +38,9 @@ def takeMotionImage(width, height):
 
 def scanMotion(width, height):
     motionFound = False
-    data1 = takeMotionImage(width, height)
+    data1 = takeMotionImageArray(width, height)
     while not motionFound:
-        data2 = takeMotionImage(width, height)
+        data2 = takeMotionImageArray(width, height)
         diffCount = 0;
         for w in range(0, width):
             for h in range(0, height):
@@ -52,16 +64,19 @@ def motionDetection():
             print ("Motion detected")
             #Take hires picture, push to cloud classifier API
             Motionpic = takeMotionImage(1024, 768)
+            print ("tookMotionImage - sending to Google")
+
             if(SpotObject(Motionpic, "Squirrel",Squirrelscore)):
                 print ("I SEE SQUIRREL")
-            #figure out how to annoy squirrel
-            for x in range(1,4): #take 3 pics
-                camera.capture('Squirrel{timestamp:%Y-%m-%d-%H-%M}.jpg')
-                filename = 'Squirrelpic-%s.jpg'%datetime.now().strftime('%Y-%m-%d')
-                f = open(filename,'w')
-                f.write(Motionpic)
-                f.close()
-                Motionpic = takeMotionImage(1024, 768)
+                #figure out how to annoy squirrel
+                for x in range(1,4): #take 3 pics
+                    #camera.capture('Squirrel{timestamp:%Y-%m-%d-%H-%M}.jpg')
+                    filename = 'Squirrelpic-%s.jpg'%datetime.now().strftime('%Y-%m-%d')
+                    print('filename is',filename)
+                    f = open(filename,'w')
+                    f.write(Motionpic)
+                    f.close()
+                    Motionpic = takeMotionImage(1024, 768)
 
             sleep(5)
 
