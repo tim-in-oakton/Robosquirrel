@@ -30,5 +30,5 @@ def SpotObject(ImageBytesIO, tag, confidence):
     for label in labels:
         if((label.description == tag) and (label.score > confidence)):
             print(label.description, label.score)
-        return(True)
-    return(False)
+            return(True)
+        return(False)

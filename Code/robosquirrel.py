@@ -83,10 +83,12 @@ def motionDetection():
                 #figure out how to annoy squirrel
                 for x in range(1,4): #take 3 pics
                     #camera.capture('Squirrel{timestamp:%Y-%m-%d-%H-%M}.jpg')
-                    filename = 'Squirrelpic-%s.jpg'%datetime.now().strftime('%Y-%m-%d')
+                    #filename = 'Squirrelpic-%s.jpg'%time.datetime.now().strftime('%Y-%m-%d')
+                    filename = 'Squirrelpic-%s.jpg'%time.strftime("%Y%m%d-%H%M%S")
                     print('filename is',filename)
                     f = open(filename,'w')
-                    f.write(Motionpic)
+                    Motionpic.seek(0)
+                    f.write(Motionpic.read())
                     f.close()
                     Motionpic = takeMotionImage(1024, 768)
             #print ("no squirrel")
