@@ -9,7 +9,7 @@ import sys # for sizeof
 from dowehazsquirrelGoogleML import SpotObject #we'll use different models - cloud, hybrid, edge
 # about to change to file-like-object
 
-threshold = 30    # How Much pixel changes
+threshold = 50    # How Much pixel changes
 sensitivity = 300 # How Many pixels change
 disco_isnt_cool = True # We hold this to be self evident and immutable
 Squirreltag = "squirrel"
@@ -90,9 +90,8 @@ def motionDetection():
                     f.write(Motionpic.read())
                     f.close()
                     Motionpic = takeMotionImage(1024, 768)
-            print ("no squirrel now")
+            #print ("no squirrel now")
             time.sleep(1)
-            print ("unsleep, continuing")
 
 
 if __name__ == '__main__':
