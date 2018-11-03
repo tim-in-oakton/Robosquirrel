@@ -78,7 +78,7 @@ def motionDetection():
                     f.write(Motionpic)
                     f.close()
                     Motionpic = takeMotionImage(1024, 768)
-
+            print ("no squirrel")
             time.sleep(5)
 
 
