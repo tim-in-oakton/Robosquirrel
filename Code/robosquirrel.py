@@ -21,7 +21,7 @@ def takeMotionImage(width, height):
         camera = picamera.PiCamera()
         camera.start_preview()
         # Camera warm-up time
-        sleep(2)
+        time.sleep(2)
         camera.capture(streamPic, 'jpeg')
         return streamPic
 
@@ -77,7 +77,7 @@ def motionDetection():
                     f.close()
                     Motionpic = takeMotionImage(1024, 768)
 
-            sleep(5)
+            time.sleep(5)
 
 
 if __name__ == '__main__':
