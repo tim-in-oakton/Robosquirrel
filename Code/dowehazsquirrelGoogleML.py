@@ -19,14 +19,14 @@ def SpotObject(ImageBytesIO, tag, confidence):
     # copies the image into memory
     print('ImageBytesIO type=',type(ImageBytesIO),'    ',sys.getsizeof(ImageBytesIO))
 
-    fakefile = open(ImageBytesIO,'r')
-
+    #fakefile = open(ImageBytesIO,'r')
+    ImageBytesIO.seek(0)
     content = ImageBytesIO.read()
     print('content type=',type(content),'    ',sys.getsizeof(content))
     # says content type= <class 'bytes'>
 
-    content = fakefile.read()
-    print('content type=',type(content),'    ',sys.getsizeof(content))
+    #content = fakefile.read()
+    #print('content type=',type(content),'    ',sys.getsizeof(content))
     # says content type= <class 'bytes'>
 
     image = vision.types.Image(content=content)
