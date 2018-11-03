@@ -55,7 +55,7 @@ def motionDetection():
             if(SpotObject(Motionpic, "Squirrel",Squirrelscore)):
                 print ("I SEE SQUIRREL")
             #figure out how to annoy squirrel
-            for x in range(1,4) #take 3 pics
+            for x in range(1,4): #take 3 pics
                 camera.capture('Squirrel{timestamp:%Y-%m-%d-%H-%M}.jpg')
                 filename = 'Squirrelpic-%s.jpg'%datetime.now().strftime('%Y-%m-%d')
                 f = open(filename,'w')
