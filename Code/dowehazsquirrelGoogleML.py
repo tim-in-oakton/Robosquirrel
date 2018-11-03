@@ -5,6 +5,7 @@ import os
 # Imports the Google Cloud client library
 from google.cloud import vision
 from google.cloud.vision import types
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/home/pi/squirrelcred.json"
 
 # don't forget to set  export GOOGLE_APPLICATION_CREDENTIALS
 # Instantiates a client
@@ -20,10 +21,12 @@ client = vision.ImageAnnotatorClient()
 # image = types.Image(content=content)
 def SpotObject (image, tag, confidence):
     # Performs label detection on the image file
-    response = client.label_detection(image=image)
+    response = client.label_detection(image=image, 5)
     labels = response.label_annotations
 
     print('Labels:')
     for label in labels:
-        print(label.description)
+        #if((label.description == tag) and (label.score > confidence):
+        print(label.description, label.score)
+        #return(true)
     return(False)

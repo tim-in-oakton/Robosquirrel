@@ -5,8 +5,7 @@ import picamera.array
 import time
 import io
 import os
-import dowehazsquirrelGoogleML
-
+import dowehazsquirrelGoogleML #we'll use different models - cloud, hybrid, edge
 
 
 threshold = 10    # How Much pixel changes
@@ -52,14 +51,20 @@ def motionDetection():
         if scanMotion(224, 160):
             print ("Motion detected")
             #Take hires picture, push to cloud classifier API
-            Motionpic = takeMotionImage(2592, 1944)
+            Motionpic = takeMotionImage(1024, 768)
             if(SpotObject(Motionpic, "Squirrel",Squirrelscore)):
                 print ("I SEE SQUIRREL")
+            #figure out how to annoy squirrel
+            for x in range(1,4) #take 3 pics
+                camera.capture('Squirrel{timestamp:%Y-%m-%d-%H-%M}.jpg')
+                filename = 'Squirrelpic-%s.jpg'%datetime.now().strftime('%Y-%m-%d')
+                f = open(filename,'w')
+                f.write(Motionpic)
+                f.close()
+                Motionpic = takeMotionImage(1024, 768)
 
-        # if (squirrel)
-        #figure out how to annoy squirrel
-    #take series of pictures
-        #take a nap
+            sleep(5)
+
 
 if __name__ == '__main__':
       try:
