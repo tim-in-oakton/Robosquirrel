@@ -18,24 +18,21 @@ def SpotObject(ImageBytesIO, tag, confidence):
 
     # copies the image into memory
     print('ImageBytesIO type=',type(ImageBytesIO),'    ',sys.getsizeof(ImageBytesIO))
+    # says ImageBytesIO type= <class '_io.BytesIO'>      678706
 
     #fakefile = open(ImageBytesIO,'r')
     ImageBytesIO.seek(0)
     content = ImageBytesIO.read()
     print('content type=',type(content),'    ',sys.getsizeof(content))
-    # says content type= <class 'bytes'>
-
-    #content = fakefile.read()
-    #print('content type=',type(content),'    ',sys.getsizeof(content))
-    # says content type= <class 'bytes'>
+    # says content type= <class 'bytes'>      678657
 
     image = vision.types.Image(content=content)
     print('image type=',type(image),'    ',sys.getsizeof(image))
-    #says image type= <class 'google.cloud.vision_v1.types.Image'>
+    #says image type= <class 'google.cloud.vision_v1.types.Image'>      60
 
     response = client.label_detection(image=image)
     labels = response.label_annotations
-    fakefile.close()
+
     print('Labels:')
     for label in labels:
         #if((label.description == tag) and (label.score > confidence):
