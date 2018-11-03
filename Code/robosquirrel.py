@@ -2,7 +2,6 @@
 
 import picamera
 import picamera.array
-import BytesIO
 import time
 import io
 import os
