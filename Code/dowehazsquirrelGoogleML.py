@@ -7,7 +7,6 @@ from google.cloud import vision
 from google.cloud.vision import types
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/home/pi/squirrelcred.json"
 
-# don't forget to set  export GOOGLE_APPLICATION_CREDENTIALS
 # Instantiates a client
 client = vision.ImageAnnotatorClient()
 # The name of the image file to annotate
@@ -19,6 +18,7 @@ client = vision.ImageAnnotatorClient()
 # with io.open(file_name, 'rb') as image_file:
 #     content = image_file.read()
 # image = types.Image(content=content)
+
 def SpotObject(image, tag, confidence):
     # Performs label detection on the image file
     response = client.label_detection(image=image)

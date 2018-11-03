@@ -64,6 +64,7 @@ def motionDetection():
             #Take hires picture, push to cloud classifier API
             Motionpic = takeMotionImage(1024, 768)
             print ("tookMotionImage - sending to Google")
+            print(type(Motionpic))
 
             if(SpotObject(Motionpic, "Squirrel",Squirrelscore)):
                 print ("I SEE SQUIRREL")
