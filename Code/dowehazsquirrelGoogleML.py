@@ -2,6 +2,7 @@
 
 import io
 import os
+import sys
 # Imports the Google Cloud client library
 from google.cloud import vision
 from google.cloud.vision import types
@@ -16,6 +17,7 @@ def SpotObject(ImageBytesIO, tag, confidence):
     client = vision.ImageAnnotatorClient()
 
     # copies the image into memory
+
     content = ImageBytesIO.read()
     print('content type=',type(content),'    ',sys.getsizeof(content))
     # says content type= <class 'bytes'>
