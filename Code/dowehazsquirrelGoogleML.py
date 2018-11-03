@@ -17,8 +17,15 @@ def SpotObject(ImageBytesIO, tag, confidence):
     client = vision.ImageAnnotatorClient()
 
     # copies the image into memory
+    print('ImageBytesIO type=',type(ImageBytesIO),'    ',sys.getsizeof(ImageBytesIO))
+
+    fakefile = open(ImageBytesIO,r)
 
     content = ImageBytesIO.read()
+    print('content type=',type(content),'    ',sys.getsizeof(content))
+    # says content type= <class 'bytes'>
+
+    content = fakefile.read()
     print('content type=',type(content),'    ',sys.getsizeof(content))
     # says content type= <class 'bytes'>
 
