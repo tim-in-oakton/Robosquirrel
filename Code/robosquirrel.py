@@ -92,7 +92,7 @@ def motionDetection():
                     f.close()
                     Motionpic = takeMotionImage(1024, 768)
             #print ("no squirrel")
-            time.sleep(5)
+            time.sleep(1)
 
 
 if __name__ == '__main__':
