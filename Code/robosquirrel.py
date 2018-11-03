@@ -5,6 +5,7 @@ import picamera.array
 import time
 import io
 import os
+import sys # for sizeof
 from dowehazsquirrelGoogleML import SpotObject #we'll use different models - cloud, hybrid, edge
 # about to change to file-like-object
 
@@ -17,7 +18,7 @@ Squirrelscore = 0.9 #fiddle to balance sensitivity with false positives - 0.0 -1
 def takeMotionImage(width, height):
         #time.sleep(1)
         # Create an in-memory stream
-        streamPic = io.BytesIO()   
+        streamPic = io.BytesIO()
         camera = picamera.PiCamera()
         camera.start_preview()
         # Camera warm-up time
@@ -64,7 +65,7 @@ def motionDetection():
             #Take hires picture, push to cloud classifier API
             Motionpic = takeMotionImage(1024, 768)
             print ("tookMotionImage - sending to Google")
-            print(type(Motionpic))
+            print('Motionpic type is',type(Motionpic),'    ',sys.getsizeof(Motionpic))
 
             if(SpotObject(Motionpic, "Squirrel",Squirrelscore)):
                 print ("I SEE SQUIRREL")

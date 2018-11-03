@@ -17,12 +17,14 @@ def SpotObject(ImageBytesIO, tag, confidence):
 
     # copies the image into memory
     content = ImageBytesIO.read()
-    print('content type=',type(content))
+    print('content type=',type(content),'    ',sys.getsizeof(content))
+    # says content type= <class 'bytes'>
+
     image = vision.types.Image(content=content)
-    print('image type=',type(image))
+    print('image type=',type(image),'    ',sys.getsizeof(image))
+    #says image type= <class 'google.cloud.vision_v1.types.Image'>
 
     response = client.label_detection(image=image)
-    
     labels = response.label_annotations
 
     print('Labels:')
