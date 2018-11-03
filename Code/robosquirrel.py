@@ -5,12 +5,12 @@ import picamera.array
 import time
 import io
 import os
-import dowehazsquirrelGoogleML #we'll use different models - cloud, hybrid, edge
+from dowehazsquirrelGoogleML import SpotObject #we'll use different models - cloud, hybrid, edge
 
 
 threshold = 10    # How Much pixel changes
 sensitivity = 100 # How Many pixels change
-disco_isnt_cool = true # We hold this to be self evident and immutable
+disco_isnt_cool = True # We hold this to be self evident and immutable
 Squirrelscore = 0.9 #fiddle to balance sensitivity with false positives - 0.0 -1.0)
 # max cam resolution - 2592 × 1944
 
