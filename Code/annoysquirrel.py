@@ -5,7 +5,7 @@ import io
 IFTTT_APPLICATION_FILE = "/home/pi/iftttcreds.txt"
 
 with open (IFTTT_APPLICATION_FILE, "r") as credfile:
-    IFTTT_APPLICATION_CREDENTIALS=credfile.readlines()
+    IFTTT_APPLICATION_CREDENTIALS=credfile.read()
 
 def annoySquirrelOn():
     sendstring='https://maker.ifttt.com/trigger/squirrelOn/with/key/'+IFTTT_APPLICATION_CREDENTIALS
