@@ -27,17 +27,6 @@ def takeMotionImage(width, height):
                 camera.capture(streamPic, 'jpeg')
                 return streamPic
 
-        # #time.sleep(1)
-        # # Create an in-memory stream
-        # streamPic = io.BytesIO()
-        # camera = picamera.PiCamera()
-        # camera.start_preview()
-        # # Camera warm-up time
-        # time.sleep(2)
-        # camera.capture(streamPic, 'jpeg')
-        # camera.close()
-        # return streamPic
-
 def takeMotionImageArray(width, height):
     with picamera.PiCamera() as camera:
         time.sleep(1)
@@ -91,11 +80,7 @@ def motionDetection():
                     f.write(Motionpic.read())
                     f.close()
                     Motionpic = takeMotionImage(1024, 768)
-                    annoySquirrelOff()
-
-
-            #print ("no squirrel now")
-            #time.sleep(1)
+                annoySquirrelOff()
 
 
 if __name__ == '__main__':
