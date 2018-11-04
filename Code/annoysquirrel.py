@@ -13,7 +13,7 @@ def annoySquirrelOn():
     print(sendstring)
     r=requests.get('https://maker.ifttt.com/trigger/squirrelOn/with/key/'+IFTTT_APPLICATION_CREDENTIALS)
     print(r)
-    sleep(2)
+    time.sleep(2)
 
 def annoySquirrelOff():
     sendstring='https://maker.ifttt.com/trigger/squirrelOff/with/key/'+IFTTT_APPLICATION_CREDENTIALS
