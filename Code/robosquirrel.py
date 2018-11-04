@@ -6,9 +6,8 @@ import time
 import io
 import os
 import sys # for sizeof
-import requests
 from dowehazsquirrelGoogleML import SpotObject #we'll use different models - cloud, hybrid, edge
-# about to change to file-like-object
+from annoysquirrel import annoySquirrelOn, annoySquirrelOff
 
 threshold = 45    # How Much pixel changes
 sensitivity = 400 # How Many pixels change
@@ -83,7 +82,7 @@ def motionDetection():
             if(SpotObject(Motionpic, Squirreltag ,Squirrelscore)):
                 print ("I SEE A SQUIRREL")
                 #annoy squirrel - IFTT and Smart Life interaction - Webhooks
-                requests.get('https://maker.ifttt.com/trigger/squirrelOn/with/key/mgQHWbxcrmsbbYMfSGfUKVUDKjIFMSRWlvWSRrPhwwE')
+                annoySquirrelOn()
                 for x in range(1,4): #take 3 pics
                     filename = '../Squirrelpic-%s.jpg'%time.strftime("%Y%m%d-%H%M%S")
                     print('filename is',filename)
@@ -92,7 +91,8 @@ def motionDetection():
                     f.write(Motionpic.read())
                     f.close()
                     Motionpic = takeMotionImage(1024, 768)
-                    requests.get('https://maker.ifttt.com/trigger/squirrelOff/with/key/mgQHWbxcrmsbbYMfSGfUKVUDKjIFMSRWlvWSRrPhwwE')
+                    annoySquirrelOff()
+
 
             #print ("no squirrel now")
             #time.sleep(1)

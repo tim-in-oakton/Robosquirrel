@@ -5,6 +5,7 @@ import os
 import sys
 from google.cloud import vision
 from google.cloud.vision import types
+#the credentials downloaded for the Google service account is stored here:
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/home/pi/squirrelcred.json"
 
 
@@ -35,7 +36,7 @@ def SpotObject(ImageBytesIO, tag, confidence):
 
     for label in labels:
         #print("          ",label.description, label.score)
-        if(label.description == "bird"):   
+        if(label.description == "bird"):
             print(label.description, label.score)
         if((label.description == tag)):   #and (label.score > confidence)):
             print(label.description, label.score)
