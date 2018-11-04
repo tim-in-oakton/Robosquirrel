@@ -8,7 +8,6 @@ import os
 import sys # for sizeof
 from dowehazsquirrelGoogleML import SpotObject #we'll use different models - cloud, hybrid, edge
 from annoysquirrel import annoySquirrelOn, annoySquirrelOff
-annoySquirrelOn()
 
 threshold = 45    # How Much pixel changes
 sensitivity = 400 # How Many pixels change

@@ -1,6 +1,5 @@
 import requests
 import io
-import time
 
 # take the credential key that you got from your webhook in IFTTT and put it in this file as a single line of text
 IFTTT_APPLICATION_FILE = "/home/pi/iftttcreds.txt"
