@@ -83,7 +83,7 @@ def motionDetection():
                 print ("I SEE A SQUIRREL")
                 #figure out how to annoy squirrel
                 for x in range(1,4): #take 3 pics
-                    filename = 'Squirrelpic-%s.jpg'%time.strftime("%Y%m%d-%H%M%S")
+                    filename = '../Squirrelpic-%s.jpg'%time.strftime("%Y%m%d-%H%M%S")
                     print('filename is',filename)
                     f = open(filename,'wb')
                     Motionpic.seek(0)

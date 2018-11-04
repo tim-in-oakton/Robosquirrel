@@ -35,6 +35,8 @@ def SpotObject(ImageBytesIO, tag, confidence):
 
     for label in labels:
         #print("          ",label.description, label.score)
+        if((label.description == "bird"')):   
+            print(label.description, label.score)
         if((label.description == tag)):   #and (label.score > confidence)):
             print(label.description, label.score)
             return(True)
