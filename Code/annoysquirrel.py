@@ -1,5 +1,6 @@
 import requests
 import io
+IMPORT time
 
 # take the credential key that you got from your webhook in IFTTT and put it in this file as a single line of text
 IFTTT_APPLICATION_FILE = "/home/pi/iftttcreds.txt"
@@ -11,6 +12,8 @@ def annoySquirrelOn():
     sendstring='https://maker.ifttt.com/trigger/squirrelOn/with/key/'+IFTTT_APPLICATION_CREDENTIALS
     print(sendstring)
     r=requests.get('https://maker.ifttt.com/trigger/squirrelOn/with/key/'+IFTTT_APPLICATION_CREDENTIALS)
+    print(r)
+    sleep(2)
 
 def annoySquirrelOff():
     sendstring='https://maker.ifttt.com/trigger/squirrelOff/with/key/'+IFTTT_APPLICATION_CREDENTIALS
